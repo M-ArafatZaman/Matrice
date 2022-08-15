@@ -1,6 +1,6 @@
 import unittest
 from main import Matrice
-from .exception import SizeMismatch
+from .exception import SizeMismatchError
 
 
 class MatriceTestRunner(unittest.TestCase):
@@ -18,7 +18,7 @@ class MatriceTestRunner(unittest.TestCase):
 
         e = Matrice([[2,3]])
 
-        self.assertRaises(SizeMismatch, lambda: a + e)
+        self.assertRaises(SizeMismatchError, lambda: a + e)
 
     # __sub__ tests
     def test_subtractions(self):
@@ -33,7 +33,7 @@ class MatriceTestRunner(unittest.TestCase):
 
         e = Matrice([[2,3]])
 
-        self.assertRaises(SizeMismatch, lambda: a - e)
+        self.assertRaises(SizeMismatchError, lambda: a - e)
 
     # __mul__ tests
     def test_multiplications(self):
@@ -134,7 +134,7 @@ class MatriceTestRunner(unittest.TestCase):
         e = Matrice([[1,2,3],
                      [4,5,6]])
 
-        self.assertRaises(SizeMismatch, lambda: a.multiply(e))
+        self.assertRaises(SizeMismatchError, lambda: a.multiply(e))
     
 
 if __name__ == "__main__":

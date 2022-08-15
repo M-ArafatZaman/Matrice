@@ -1,3 +1,3 @@
 # Error if size doesnt match
-class SizeMismatch(Exception):
+class SizeMismatchError(Exception):
     pass

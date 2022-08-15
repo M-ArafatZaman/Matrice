@@ -1,4 +1,4 @@
-from .exception import SizeMismatch
+from .exception import SizeMismatchError
 
 class Matrice:
     def __init__(self, arr):
@@ -49,7 +49,7 @@ class Matrice:
 
             return Matrice(newArr)
         else:
-            raise SizeMismatch("Matrices are not of the same size")
+            raise SizeMismatchError("Matrices are not of the same size")
 
     # Subtract two vector from it's corresponding element
     def __sub__(self, other):
@@ -74,7 +74,7 @@ class Matrice:
 
             return Matrice(newArr)
         else:
-            raise SizeMismatch("Matrices are not of the same size")
+            raise SizeMismatchError("Matrices are not of the same size")
 
     # Multiplies matrice with a number or another matrice with it's corresponding element
     def __mul__(self, other):
@@ -221,7 +221,7 @@ class Matrice:
             return Matrice(newArr)    
         
         else:
-            raise SizeMismatch("Matrice multiplcation can only be performed if the number of columns of 'A' matches the number of rows of 'B'.")
+            raise SizeMismatchError("Matrice multiplcation can only be performed if the number of columns of 'A' matches the number of rows of 'B'.")
         
 
 
