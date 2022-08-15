@@ -1,5 +1,5 @@
 import random
-from main import Matrice
+from main import Matrix
 
 # Returns a random vector of size (x, y)
 # Eg- randomVector(2, 2)
@@ -9,4 +9,4 @@ from main import Matrice
 def randomVector(cx, cy):
 	newArr = [[random.uniform(0,1) for col in range(cy)] for row in range(cx) ]
 
-	return Matrice(newArr)
+	return Matrix(newArr)

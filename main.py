@@ -1,9 +1,9 @@
-from .exception import SizeMismatchError
+from exception import SizeMismatchError
 
-class Matrice:
+class Matrix:
     def __init__(self, arr):
         # Store the raw arr
-        self.matrice = arr
+        self.matrix = arr
 
         # Store the shape of the vector
         self.x = len(arr)
@@ -15,22 +15,22 @@ class Matrice:
 
     def __repr__(self):
         # Turn the vector into a string
-        result = '-m'+str(self.matrice)+'m-'
-        result = result.replace('-m[', 'Matrice(')
+        result = '-m'+str(self.matrix)+'m-'
+        result = result.replace('-m[', 'Matrix(')
         result = result.replace(']m-', ')')
-        result = result.replace(', [', '\n        [')
+        result = result.replace(', [', '\n       [')
 
         return result
         
     # Get method, example array[x]
     def __getitem__(self, key):
-        return self.matrice[key]
+        return self.matrix[key]
 
     # Add two matrice with it's corresponding element
     def __add__(self, other):
         # Ensure that other is a matrice
-        if not isinstance(other, Matrice):
-            raise TypeError("A matrice can only be added with another matrice")
+        if not isinstance(other, Matrix):
+            raise TypeError("A Matrix can only be added with another matrix.")
 
         # Checks if the size of the 2 matrices match
         if self.x == other.x and self.y == other.y:
@@ -43,19 +43,19 @@ class Matrice:
                 # Iterate through the coloumn
                 for y in range(self.y):
                     # Adds all the element to its corresponding element
-                    row.append(self.matrice[x][y] + other.matrice[x][y])
+                    row.append(self.matrix[x][y] + other.matrix[x][y])
                 
                 newArr.append(row)
 
-            return Matrice(newArr)
+            return Matrix(newArr)
         else:
-            raise SizeMismatchError("Matrices are not of the same size")
+            raise SizeMismatchError("Matrices are not of the same size.")
 
     # Subtract two vector from it's corresponding element
     def __sub__(self, other):
         # Ensure that other is a matrice
-        if not isinstance(other, Matrice):
-            raise TypeError("A matrice can only be added with another matrice")
+        if not isinstance(other, Matrix):
+            raise TypeError("A Matrix can only be subtracted with another Matrix.")
             
         # Checks if the size of the 2 matrices match
         if self.x == other.x and self.y == other.y:
@@ -68,11 +68,11 @@ class Matrice:
                 # Iterate through the coloumn
                 for y in range(self.y):
                     # Subtract all the element to its corresponding element
-                    row.append(self.matrice[x][y] - other.matrice[x][y])
+                    row.append(self.matrix[x][y] - other.matrix[x][y])
                 
                 newArr.append(row)
 
-            return Matrice(newArr)
+            return Matrix(newArr)
         else:
             raise SizeMismatchError("Matrices are not of the same size")
 
@@ -90,10 +90,10 @@ class Matrice:
                 # Iterate through the coloumn
                 for y in range(self.y):
                     # Multiply each element by n
-                    row.append(self.matrice[x][y] * other)
+                    row.append(self.matrix[x][y] * other)
                 newArr.append(row)
 
-            return Matrice(newArr)
+            return Matrix(newArr)
 
         # Checks if the matrice is of the same size
         elif self.x == other.x and self.y == other.y:
@@ -104,12 +104,12 @@ class Matrice:
                 # Iterate through the coloumn
                 for y in range(self.y):
                     # Multiply all the element to its corresponding element
-                    row.append(self.matrice[x][y] * other.matrice[x][y])
+                    row.append(self.matrix[x][y] * other.matrix[x][y])
                 newArr.append(row)
 
-            return Matrice(newArr)
+            return Matrix(newArr)
         else:
-            raise TypeError("Matrice can only be multiplied with other Matrices of the same or with a number.")
+            raise TypeError("A Matrix can only be multiplied with other Matrices of the same shape or with a number.")
 
     # Divides two vector or  from it's corresponding element
     def __truediv__(self, other):
@@ -125,10 +125,10 @@ class Matrice:
                 # Iterate through the coloumn
                 for y in range(self.y):
                     # Divide each element by n
-                    row.append(self.matrice[x][y] / other)
+                    row.append(self.matrix[x][y] / other)
                 newArr.append(row)
 
-            return Matrice(newArr)
+            return Matrix(newArr)
 
         # Checks if the vector is of the same size
         elif self.x == other.x and self.y == other.y:
@@ -139,12 +139,12 @@ class Matrice:
                 # Iterate through the coloumn
                 for y in range(self.y):
                     # Multiply all the element to its corresponding element
-                    row.append(self.matrice[x][y] / other.matrice[x][y])
+                    row.append(self.matrix[x][y] / other.matrix[x][y])
                 newArr.append(row)
 
-            return Matrice(newArr)
+            return Matrix(newArr)
         else:
-            raise TypeError("Matrice can only be divided with other Matrices of the same or with a number.")
+            raise TypeError("A Matrix can only be divided with other Matrices of the same shape or with a number.")
 
     # Compare 
     def __eq__(self, other):
@@ -169,7 +169,7 @@ class Matrice:
         # Iterate through each row
         for x in range(self.x):
             # Append the required column element
-            newArr.append(self.matrice[x][y])
+            newArr.append(self.matrix[x][y])
 
         return newArr
 
@@ -180,7 +180,7 @@ class Matrice:
         for x in range(self.x):
             # Iterate through the coloumn
             for y in range(self.y):
-                newArr.append(self.matrice[x][y])
+                newArr.append(self.matrix[x][y])
 
         return newArr
 
@@ -189,16 +189,16 @@ class Matrice:
         # Perform the matrice transpose operation
         transposed = []
 
-        for x in zip(*self.matrice):
+        for x in zip(*self.matrix):
             transposed.append(list(x))
 
-        return Matrice(transposed)
+        return Matrix(transposed)
 
     # This function performs matrice multiplication
     def multiply(self, other):
         # Ensure that the other factor is also a matrice
-        if not isinstance(other, Matrice):
-            raise TypeError("Matrice multiplication can only be performed with other matrices.")
+        if not isinstance(other, Matrix):
+            raise TypeError("Matrix multiplication can only be performed with other matrices.")
         
         # This column and the other row must match
         elif self.y == other.x:
@@ -218,10 +218,9 @@ class Matrice:
                 # Append row to the matrice
                 newArr.append(row)
 
-            return Matrice(newArr)    
+            return Matrix(newArr)    
         
         else:
-            raise SizeMismatchError("Matrice multiplcation can only be performed if the number of columns of 'A' matches the number of rows of 'B'.")
+            raise SizeMismatchError("A Matrix multiplcation can only be performed if the number of columns of 'A' matches the number of rows of 'B'.")
         
-
 
